@@ -1,0 +1,23 @@
+name "Productive Bees"
+
+every 20 ticks do
+    input fe:: from EneryWell west side
+    output fe:: to EnergySink
+end
+
+every 20 ticks do
+    input item:: from Interface
+    output item::glass_bottle to BeeHive
+    output item:productivebees:honey_treat to Incubator
+    output item:productivebees:bee_cage to BreedingChamber top side
+forget
+    input item:: except item:productivebees:bee_cage from BeeHive
+    input item:: from Centrifuge
+    output item:productivebees:configurable_* to Centrifuge
+    output except item:productivebees:configurable_* to Interface
+end
+
+every 20 ticks do
+    input fluid:: from Centrifuge
+    output fluid:: to Interface
+end
