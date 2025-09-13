@@ -1,0 +1,27 @@
+name "Draconic Crafting"
+
+every 1 ticks do
+    input fe:: from EnergyWell
+    output fe:: to each EnergySink
+end
+
+every 20 ticks do
+    -- special handling for Chaotic Core
+    if Source slots 0 has = 5 item::large_chaos_frag then
+        input from Source slots 0
+        output 1 to Core
+        output 1 to each Injector
+        forget
+    end
+
+    input from Source slots 0
+    output to Core slots 0
+    forget
+
+    input from Source slots 1-26
+    output 1 to each Injector
+    forget
+
+    input from Core slots 1
+    output to PatternProvider
+end
