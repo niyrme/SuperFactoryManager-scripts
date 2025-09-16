@@ -1,0 +1,23 @@
+name "Hostile Neural Networks"
+
+every 1 ticks do
+    input fe:: from EnergyWell
+    output fe:: to EnergySink
+end
+
+every 20 ticks do
+    input item:hostilenetworks:prediction_matrix from Interface
+    output item:hostilenetworks:prediction_matrix to SimulationChamber
+forget
+    input item:hostilenetworks:prediction from SimulationChamber
+    output item:hostilenetworks:prediction to LootFabricator
+forget
+    input item:: from LootFabricator
+    input
+        item:hostilenetworks:overworld_prediction,
+        item:hostilenetworks:nether_prediction,
+        item:hostilenetworks:end_prediction,
+        item:hostilenetworks:twilight_prediction,
+    from SimulationChamber
+    output item:: to Interface
+end
